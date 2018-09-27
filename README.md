@@ -11,7 +11,7 @@ At the end of the game, a modal box appears congratulating the user and showing 
 The following links are  main resources consulted(but not limited to) during the course of this project:
 - https://www.youtube.com/watch?v=G8J13lmApkQ
 - https://www.youtube.com/watch?v=_rUH-sEs68Y
-- https://matthewcranford.com/memory-game-walkthrough-part-1-setup/
+- https://matthewcranford.com/memory-game-walkthrough-part-1-setup/ part 1-8
 - https://www.youtube.com/watch?v=oECVwum-7Zc
 - https://stackoverflow.com/questions/31559469/how-to-create-a-simple-javascript-timer
 - https://www.w3schools.com/howto/howto_css_modals.asp
