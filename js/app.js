@@ -241,13 +241,13 @@ function resetGame(){
     minutes=0;
     seconds=0;
     getTimer.textContent = `${minutes}:0${seconds}`;
-
-    // Shuffles cards
-    shuffleCards();
     
     //delete all cards
     cardClick.innerHTML = "";
     init(); // create new cards
+    
+    // Shuffles cards
+    shuffleCards();
 }
 
 // Function to show modal
