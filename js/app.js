@@ -1,13 +1,25 @@
 //Array list that holds all the cards
-let cardList=['fa-diamond','fa-diamond','fa-paper-plane-o','fa-paper-plane-o','fa-anchor','fa-anchor','fa-bolt','fa-bolt','fa-cube','fa-cube',
-'fa-bicycle','fa-bicycle','fa-leaf','fa-leaf','fa-bomb','fa-bomb'];
+let cardList=['fa fa-diamond','fa fa-diamond','fa fa-paper-plane-o','fa fa-paper-plane-o','fa fa-anchor','fa fa-anchor',
+'fa fa-bolt','fa fa-bolt','fa fa-cube','fa fa-cube',
+'fa fa-bicycle','fa fa-bicycle','fa fa-leaf','fa fa-leaf','fa fa-bomb','fa fa-bomb'];
 
 // Variable declarations
 let openCards=[];
 let moves=0;
-let matchCard=[]; // stores cards that have been matched
+let matchCard=0; 
 let firstClick= true;
 const cardClick= document.querySelector('.deck');
+
+// Function to generate cards
+function init() {
+    for(let i = 0; i < cardList.length; i++) {
+        const newCard = document.createElement("li");
+        newCard.classList.add("card","cards");
+        newCard.innerHTML = `<i class="${cardList[i]}"></i>`;
+        cardClick.appendChild(newCard);
+    }
+}
+init();
 
 // Function to shuffle deck of cards 
 function shuffleCards(){
@@ -91,9 +103,6 @@ function checkCardMatch() {
     if (openCards[0].firstElementChild.className === openCards[1].firstElementChild.className){
         openCards[0].classList.add('match');
         openCards[1].classList.add('match');
-
-        // pushes matched card into array matchCard(to keep track of matches)
-        matchCard.push(openCards[0],openCards[1]);
         openCards=[];
 
         //if all cards match,game is over,modal appears
@@ -126,7 +135,8 @@ function moveCounter(){
 
 // Checks if the game is over
 function gameOver(){
-    if(matchCard.length === cardList.length){
+    matchCard += 1;
+    if(matchCard=== 8){
         stopTimer();
         modalValues();
         showModal();
@@ -201,12 +211,8 @@ replayBtn.addEventListener('click',replayGame);
 function replayGame(){
     resetGame();
     closeModal();
-    const getAllCards = document.querySelectorAll('.cards');
-
-    // sets all cards to have only class 'card'
-    for(let getAllCard of getAllCards){
-        getAllCard.className='card';
-    }
+    matchCard= 0;
+   
 }
 
 // restart button listener
@@ -214,8 +220,12 @@ const restartBtn= document.querySelector('.restart');
 restartBtn.addEventListener('click',replayGame);
 
 function resetGame(){
-    // empties the matchCard array
-    matchCard = [];
+    // resets matched card
+    matchCard = 0;
+    
+    // empties openCard array
+    openCards=0;
+    openCards=[];
 
     // Reset moves
     moves = 0;
@@ -234,6 +244,10 @@ function resetGame(){
 
     // Shuffles cards
     shuffleCards();
+    
+    //delete all cards
+    cardClick.innerHTML = "";
+    init(); // create new cards
 }
 
 // Function to show modal
